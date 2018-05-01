@@ -3,7 +3,7 @@ package tp_especial;
 public class Main {
 
 	public static void main(String[] args) {
-		ImagenEscalaGrises img = new ImagenEscalaGrises("Will(Original).bmp");
+		ImagenEscalaGrises img = new ImagenEscalaGrises("resources/Will(Original).bmp");
 		System.out.println(img.getAlto());
 		System.out.println(img.getAncho());
 		for (int x = 0; x < img.getAncho(); x++)
