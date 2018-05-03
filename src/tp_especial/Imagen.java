@@ -46,7 +46,23 @@ public class Imagen {
 		return (this.getPixel(x, y)) & 0x000000FF;
 	}
 	
-	public int[] getArregloPixeles(){
-		return img.getRGB(0, 0, getAncho(), getAlto(), null, 0, 0);
+	public int[] getArregloPixeles(){ //va recorriendo la imagen por columnas
+		int[] arreglo = new int[this.getAlto() * this.getAncho()];
+		int alto = this.getAlto();
+		int ancho = this.getAncho();
+		for (int x = 0; x < ancho; x++)
+			for (int y = 0; y < alto; y++){
+				arreglo[x * alto + y] = this.getPixel(x, y);
+			}
+		return arreglo;
+	}
+	
+	public int[][] getMatrizPixeles(){
+		int[][] matriz = new int[this.getAlto()][this.getAncho()];
+		for (int x = 0; x < this.getAlto(); x++)
+			for (int y = 0; y < this.getAncho(); y++){
+				matriz[x][y] = getPixel(x, y);
+			}
+		return matriz;
 	}
 }

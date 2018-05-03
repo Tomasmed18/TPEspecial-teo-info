@@ -8,9 +8,9 @@ public class Main {
 		System.out.println(img.getAncho());
 		for (int x = 0; x < img.getAncho(); x++)
 			for (int y = 0; y < img.getAlto(); y++){
-				System.out.println("r = " + img.getRed(x, y) + ", g = " + img.getGreen(x, y) + ", b = " + img.getBlue(x, y) + ", gris = " + img.getGris(x, y));
+				System.out.println("r = " + img.getRed(x, y) + ", g = " + img.getGreen(x, y) + ", b = " + img.getBlue(x, y) + ", gris = " + img.getPixel(x, y));
 			}
-		int[] arr = img.getArregloGrises();
+		int[] arr = img.getArregloPixeles();
 		int min = 0;
 		int valMin = 255;
 		for (int i = 0; i < arr.length; i++){
@@ -22,10 +22,13 @@ public class Main {
 		}
 		System.out.println("min = " + min + ", valMin = " + valMin);
 		
-		int[] histograma = img.getHistogramaGrises();
+		int[] histograma = img.getCantidadesGrises();
 		for (int i = 0; i<histograma.length; i++){
 			System.out.println("Gris[" + i + "] = " + histograma[i]);
 		}
+		
+		System.out.println("Media = " + Indicadores.media(arr));
+		System.out.println("Desvío estandar = " + Indicadores.desviacionEstandar(arr));
 	}
 
 }
