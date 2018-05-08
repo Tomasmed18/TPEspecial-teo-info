@@ -32,6 +32,11 @@ public class CodigoHuffman {
 		float valor;
 		String simbolo;
 		
+		public Hoja(float valor, String simbolo){
+			this.valor = valor;
+			this.simbolo = simbolo;
+		}
+		
 		public float valor(){
 			return valor;
 		}
