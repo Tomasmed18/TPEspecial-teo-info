@@ -38,11 +38,11 @@ public class Imagen {
 		return (this.getPixel(x, y) >> 16) & 0x000000FF;
 	}
 	
-	public int getBlue(int x, int y){
+	public int getGreen(int x, int y){
 		return (this.getPixel(x, y) >> 8) & 0x000000FF;
 	}
 	
-	public int getGreen(int x, int y){
+	public int getBlue(int x, int y){
 		return (this.getPixel(x, y)) & 0x000000FF;
 	}
 	

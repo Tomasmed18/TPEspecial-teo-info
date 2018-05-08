@@ -16,7 +16,7 @@ public class Histograma {
 				data.addValue((double) valores[i], Integer.toString(i), "GRISES");
 	
 
-		JFreeChart chart = ChartFactory.createBarChart(
+		JFreeChart chart = ChartFactory.createBarChart3D(
 				titulo,       
 				"Tonalidades de grises",               // domain axis label
 				"Cantidades de píxeles",                  // range axis label

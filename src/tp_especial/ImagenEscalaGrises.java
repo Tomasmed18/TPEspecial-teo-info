@@ -18,10 +18,17 @@ public class ImagenEscalaGrises extends Imagen{
 		int[] arr = new int[256];
 		operacionesArreglo.inicializarArreglo(arr, 0);
 		for (int x = 0; x < this.getAncho(); x++)
-			for (int y = 0; y < this.getAlto(); y++){
+			for (int y = 0; y < this.getAlto(); y++)
 				arr[this.getPixel(x, y)]++;
-			}
-		
 		return arr;
+	}
+	
+	public float[] getProbabilidadesGrises(){
+		int[] grises = this.getCantidadesGrises();
+		float[] probGrises = new float[grises.length];
+		int totalGrises = this.getAlto() * this.getAncho();
+		for (int i = 0; i < grises.length; i++) 
+			probGrises[i]=(float)grises[i]/(float)totalGrises;
+		return probGrises;
 	}
 }
