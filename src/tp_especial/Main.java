@@ -3,7 +3,18 @@ package tp_especial;
 public class Main {
 
 	public static void main(String[] args) {
-		ImagenEscalaGrises img = new ImagenEscalaGrises("resources/Will(Original).bmp");
+		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
+		ImagenEscalaGrises img1 = new ImagenEscalaGrises("resources/Will_6.bmp");
+		
+		System.out.println("Coeficiente de correlación cruzada: " 
+							+ Indicadores.coeficienteCorrelacionCruzada(imgOriginal.getArregloPixeles(), img1.getArregloPixeles()));
+		Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
+		int[] histograma = imgOriginal.getCantidadesGrises();
+		for (int i = 0; i<histograma.length; i++)
+			if (histograma[i] != 0)
+				System.out.println("Gris[" + i + "] = " + histograma[i]);
+		
+		/**
 		System.out.println(img.getAlto());
 		System.out.println(img.getAncho());
 		for (int x = 0; x < img.getAncho(); x++)
@@ -29,6 +40,7 @@ public class Main {
 		
 		System.out.println("Media = " + Indicadores.media(arr));
 		System.out.println("Desvío estandar = " + Indicadores.desviacionEstandar(arr));
+		**/
 	}
 
 }
