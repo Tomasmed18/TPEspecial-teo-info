@@ -4,21 +4,11 @@ public class Main {
 
 	public static void main(String[] args) {
 		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
-		ImagenEscalaGrises img1 = new ImagenEscalaGrises("resources/Will_6.bmp");
-		Imagen verde = new Imagen("Verde.bmp");
-		
-		System.out.println("Coeficiente de correlación cruzada: " 
-							+ Indicadores.coeficienteCorrelacionCruzada(imgOriginal.getArregloPixeles(), img1.getArregloPixeles()));
-		Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
-		int[] histograma = imgOriginal.getCantidadesGrises();
-		for (int i = 0; i<histograma.length; i++)
-			if (histograma[i] != 0)
-				System.out.println("Gris[" + i + "] = " + histograma[i]);
-		Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
-		
-		System.out.println(verde.getRed(0, 1));
-		System.out.println(verde.getBlue(0, 1));
-		System.out.println(verde.getGreen(0, 1));
+
+		//Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
+		//Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
+		CodigoHuffman cod = new CodigoHuffman();
+		cod.codificar(imgOriginal);
 		/**
 		System.out.println(img.getAlto());
 		System.out.println(img.getAncho());
