@@ -14,20 +14,23 @@ public class Main {
 		int ancho =imgOriginal.getAncho();
 		int alto= imgOriginal.getAlto();
 		
-		System.out.println(ancho);
-		System.out.println(alto);
+		
 		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
 		int[] pixeles=imgOriginal.getArregloPixeles();
 		
 		
+		int coincidencias=0;
 		
 		for (int x = 0; x < ancho; x++)
 			for (int y = 0; y < alto; y++){
-				if(pixeles[x*alto+y]==decodificado[x*alto+y])
-					System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y]);
+				if(pixeles[x*alto+y]==decodificado[x*alto+y]) {
+					//System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y]);
+					coincidencias++;
+				}
 			}
 		
 		
+		System.out.println(coincidencias+" " + alto*ancho);
 		
 		/**
 		System.out.println(img.getAlto());
