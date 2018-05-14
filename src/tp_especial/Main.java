@@ -11,20 +11,22 @@ public class Main {
 		//Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
 		CodigoHuffman cod = new CodigoHuffman();
 		cod.codificar(imgOriginal);
-		
-		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
-		int[] pixeles=imgOriginal.getArregloPixeles();
-		
 		int ancho =imgOriginal.getAncho();
 		int alto= imgOriginal.getAlto();
 		
-		/*
+		System.out.println(ancho);
+		System.out.println(alto);
+		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
+		int[] pixeles=imgOriginal.getArregloPixeles();
+		
+		
+		
 		for (int x = 0; x < ancho; x++)
 			for (int y = 0; y < alto; y++){
-				if(pixeles[x*alto+y]!=decodificado[x*alto+y])
+				if(pixeles[x*alto+y]==decodificado[x*alto+y])
 					System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y]);
 			}
-		*/
+		
 		
 		
 		/**

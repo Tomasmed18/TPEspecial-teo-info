@@ -162,16 +162,18 @@ public class CodigoHuffman {
 			out.delete(); //borro el contenido para la nueva codificacion
 		}
 	
-		FileWriter fw=null;
-	
+		
+		BufferedWriter bw = null;
 		try {
-			fw = new FileWriter(out);
-			fw.write(encabezado);
-			fw.write(totalBits+saltoLinea);
-			fw.write(simbolosYProb);
-			fw.write(codigo);
+			bw = new BufferedWriter(new OutputStreamWriter(
+	                new FileOutputStream(out), "UTF16"));
+			bw.write(encabezado);
+			bw.write(totalBits+saltoLinea);
+			bw.write(simbolosYProb);
 			
-			fw.close();
+			bw.write(codigo);
+			
+			bw.close();
 			
 		
 		} catch (IOException e) {
@@ -220,8 +222,9 @@ public class CodigoHuffman {
 		*/
 		
 		try {
-			FileReader fileReader = new FileReader(source);
-			BufferedReader bufferReader= new BufferedReader(fileReader);
+			
+			BufferedReader bufferReader= new BufferedReader(new InputStreamReader(
+                    new FileInputStream(source), "UTF16"));
 			String altoAncho=bufferReader.readLine();
 			String[] dimensiones=altoAncho.split(";");
 			int alto=Integer.parseInt(dimensiones[0]);
@@ -259,7 +262,7 @@ public class CodigoHuffman {
 						imprimirBitsChar(c);
 					for(int i=0;i<16;i++) {
 						
-						if(bitsLeidos==totalBits)
+						if(bitsLeidos==totalBits || pixeles==alto*ancho)
 							break; //todo el resto es basura
 						bitsLeidos++;
 						char bitMayorPeso=  (char) (c & mask);
@@ -274,6 +277,7 @@ public class CodigoHuffman {
 						String clave=this.getKey(codificaciones, bufferDecodificador); //clave es un valor entre 0..255, que es el tono gris del pixel.
 						
 						if(clave!=null) {
+							
 							//lo que venia decodificando se convirtio en un simbolo, por lo que hay que resetear el buffer y guardar el simbolo (que es un valor 0..255) en el pixel en cuestion
 							bufferDecodificador="";
 							decodificado[pixeles]=Integer.parseInt(clave);
