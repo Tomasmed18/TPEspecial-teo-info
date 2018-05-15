@@ -15,7 +15,7 @@ public class Main {
 		int ancho =imgOriginal.getAncho();
 		int alto= imgOriginal.getAlto();
 		
-		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
+		int[] decodificado=cod.decodificar("instruccionesCodificacion.txt","codificacion.dat");
 		int[] pixeles=imgOriginal.getArregloPixeles();
 		
 		
