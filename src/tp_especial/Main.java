@@ -6,14 +6,14 @@ public class Main {
 
 	public static void main(String[] args) {
 		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
-
+		
+		
 		//Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
 		//Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
 		CodigoHuffman cod = new CodigoHuffman();
 		cod.codificar(imgOriginal);
 		int ancho =imgOriginal.getAncho();
 		int alto= imgOriginal.getAlto();
-		
 		
 		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
 		int[] pixeles=imgOriginal.getArregloPixeles();
@@ -29,9 +29,10 @@ public class Main {
 				}
 			}
 		
+		System.out.println("coincidencias: " + coincidencias+ " de:  " + alto*ancho);
 		
-		System.out.println(coincidencias+" " + alto*ancho);
-		
+		ImagenEscalaGrises imgTest = new ImagenEscalaGrises(decodificado,alto,ancho);
+		imgTest.guardarImagen("test.bmp");
 		/**
 		System.out.println(img.getAlto());
 		System.out.println(img.getAncho());

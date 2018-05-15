@@ -22,6 +22,7 @@ public class Imagen {
 		ancho = img.getWidth();
 	}
 	
+	
 	public int getAlto(){
 		return alto;
 	}
@@ -64,5 +65,31 @@ public class Imagen {
 				matriz[x][y] = getPixel(x, y);
 			}
 		return matriz;
+	}
+	
+	public Imagen(int[] arrPixeles, int alto, int ancho) {
+		img= new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
+		for (int x = 0; x < ancho; x++)
+			for (int y = 0; y < alto; y++){
+				int aux=arrPixeles[x * alto + y];
+				int a=aux<<24;
+				int r=aux<<16;
+				int g=aux<<8;
+				int b=aux;
+				int color=0;
+				color=a|r|g|b;
+				img.setRGB(x, y, color );
+			}
+		
+		
+	}
+	
+	public void guardarImagen(String nombre) {
+		try {
+			ImageIO.write(img, "bmp", new File(nombre));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
