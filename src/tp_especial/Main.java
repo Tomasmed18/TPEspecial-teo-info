@@ -1,24 +1,37 @@
 package tp_especial;
 
+import java.io.File;
+
 public class Main {
 
 	public static void main(String[] args) {
 		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
-		ImagenEscalaGrises img1 = new ImagenEscalaGrises("resources/Will_6.bmp");
-		Imagen verde = new Imagen("Verde.bmp");
+
+		//Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
+		//Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
+		CodigoHuffman cod = new CodigoHuffman();
+		cod.codificar(imgOriginal);
+		int ancho =imgOriginal.getAncho();
+		int alto= imgOriginal.getAlto();
 		
-		System.out.println("Coeficiente de correlación cruzada: " 
-							+ Indicadores.coeficienteCorrelacionCruzada(imgOriginal.getArregloPixeles(), img1.getArregloPixeles()));
-		Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
-		int[] histograma = imgOriginal.getCantidadesGrises();
-		for (int i = 0; i<histograma.length; i++)
-			if (histograma[i] != 0)
-				System.out.println("Gris[" + i + "] = " + histograma[i]);
-		Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
 		
-		System.out.println(verde.getRed(0, 1));
-		System.out.println(verde.getBlue(0, 1));
-		System.out.println(verde.getGreen(0, 1));
+		int[] decodificado=cod.decodificar(new File("codificacion.txt"));
+		int[] pixeles=imgOriginal.getArregloPixeles();
+		
+		
+		int coincidencias=0;
+		
+		for (int x = 0; x < ancho; x++)
+			for (int y = 0; y < alto; y++){
+				if(pixeles[x*alto+y]==decodificado[x*alto+y]) {
+					//System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y]);
+					coincidencias++;
+				}
+			}
+		
+		
+		System.out.println(coincidencias+" " + alto*ancho);
+		
 		/**
 		System.out.println(img.getAlto());
 		System.out.println(img.getAncho());
@@ -46,6 +59,14 @@ public class Main {
 		System.out.println("Media = " + Indicadores.media(arr));
 		System.out.println("Desvío estandar = " + Indicadores.desviacionEstandar(arr));
 		**/
+		/*
+		char test=0x4001;
+		test=(char) ( test<<1);
+	    char mask= 0x8000;
+	    char aux= (char) (test & mask);
+	    if(aux==0x8000)
+	    	System.out.println(aux);
+	    */
 	}
 
 }
