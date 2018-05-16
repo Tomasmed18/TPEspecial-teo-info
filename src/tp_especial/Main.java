@@ -5,7 +5,7 @@ import java.io.File;
 public class Main {
 
 	public static void main(String[] args) {
-		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
+		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will_7.bmp");
 		
 		
 		//Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
@@ -15,7 +15,7 @@ public class Main {
 		int ancho =imgOriginal.getAncho();
 		int alto= imgOriginal.getAlto();
 		
-		int[] decodificado=cod.decodificar("instruccionesCodificacion.txt","codificacion.dat");
+		int[] decodificado=cod.decodificar("codificacion.txt");
 		int[] pixeles=imgOriginal.getArregloPixeles();
 		
 		
@@ -24,7 +24,7 @@ public class Main {
 		for (int x = 0; x < ancho; x++)
 			for (int y = 0; y < alto; y++){
 				if(pixeles[x*alto+y]==decodificado[x*alto+y]) {
-					//System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y]);
+					//System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y] + " x: " + x+" y: " +y);
 					coincidencias++;
 				}
 			}
