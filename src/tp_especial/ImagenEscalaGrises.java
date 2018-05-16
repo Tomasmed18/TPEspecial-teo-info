@@ -7,6 +7,9 @@ public class ImagenEscalaGrises extends Imagen{
 	public ImagenEscalaGrises(String nombreArchivo) {
 		super(nombreArchivo);
 	}
+	public ImagenEscalaGrises(int[] arrPixeles, int alto, int ancho) {
+		super(arrPixeles,alto,ancho);
+	}
 	
 	public int getPixel(int x, int y){
 		int rgb = super.getPixel(x, y);
