@@ -1,6 +1,9 @@
 package tp_especial;
 
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Hashtable;
@@ -58,35 +61,71 @@ public class Main {
 		Collections.sort(imagenes);
 		
 		//Coeficiente de correlacion de cada una
+		String salida1 = "";
 		for (ImagenComparable img: imagenes)
-			System.out.println("Coef. de correlacion de la imagen original con " + img.getNombre() + ": " + 
-					Indicadores.coeficienteCorrelacionCruzada(img.getImagen().getArregloPixeles(), imgOriginal.getArregloPixeles()));
+			salida1 += ("Coef. de correlacion de la imagen original con " + img.getNombre() + ": " + 
+					Indicadores.coeficienteCorrelacionCruzada(img.getImagen().getArregloPixeles(), imgOriginal.getArregloPixeles()) + String.format("%n"));
+		
+		System.out.println(salida1);
+		
+		
+		//Indicadores de las imagenes más y menos parecidas
 		
 		ImagenComparable masParecida = imagenes.get(0);
 		ImagenComparable menosParecida = imagenes.get(imagenes.size() - 1);
 		
-		System.out.println("");
-		System.out.println("La imagen más parecida es: " + masParecida.getNombre());
-		System.out.println("Media: " + Indicadores.media(masParecida.getImagen().getArregloPixeles()));
-		System.out.println("Desvío: " + Indicadores.desviacionEstandar(masParecida.getImagen().getArregloPixeles()));
-		System.out.println("");
-		System.out.println("La imagen menos parecida es: " + menosParecida.getNombre());
-		System.out.println("Media: " + Indicadores.media(menosParecida.getImagen().getArregloPixeles()));
-		System.out.println("Desvío: " + Indicadores.desviacionEstandar(menosParecida.getImagen().getArregloPixeles()));
+		String salida2 = "";
+		salida2 += "La imagen más parecida es: " + masParecida.getNombre() + String.format("%n");;
+		salida2 += "Media: " + Indicadores.media(masParecida.getImagen().getArregloPixeles()) + String.format("%n");;
+		salida2 += "Desvío: " + Indicadores.desviacionEstandar(masParecida.getImagen().getArregloPixeles()) +String.format("%n");;
+		salida2 += "La imagen menos parecida es: " + menosParecida.getNombre() + String.format("%n");;
+		salida2 += "Media: " + Indicadores.media(menosParecida.getImagen().getArregloPixeles()) + String.format("%n");;
+		salida2 += "Desvío: " + Indicadores.desviacionEstandar(menosParecida.getImagen().getArregloPixeles()) + String.format("%n");;
+		
+		System.out.println(salida1);
 		
 		//Histogramas
-		
-		Histograma h1 = new Histograma("Cantidades de grises de " + masParecida.getNombre(), masParecida.getImagen().getCantidadesGrises());
-		Histograma h2 = new Histograma("Cantidades de grises de " + menosParecida.getNombre(), menosParecida.getImagen().getCantidadesGrises());
-		
+		Histograma hOriginal = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises(), false);
+		Histograma h1 = new Histograma("Cantidades de grises de " + masParecida.getNombre(), masParecida.getImagen().getCantidadesGrises(), false);
+		Histograma h2 = new Histograma("Cantidades de grises de " + menosParecida.getNombre(), menosParecida.getImagen().getCantidadesGrises(), false);
 		
 		//Huffman
-		CodigoHuffman huffman = new CodigoHuffman();
-		huffman.codificar(masParecida.getImagen(), "masParecida.txt");
 		
+		CodigoHuffman huffman = new CodigoHuffman();
+		
+		
+		long start = System.currentTimeMillis();
+		huffman.codificar(masParecida.getImagen(), "masParecida.txt");
+		long stop = System.currentTimeMillis();
+		System.out.println("Tiempo de compresión: " + (stop - start) + " ms");
+		
+		start = System.currentTimeMillis();
 		ImagenEscalaGrises decodificada = huffman.decodificar("masParecida.txt");
+		stop = System.currentTimeMillis();
+		System.out.println("Tiempo de descompresión: " + (stop - start) + " ms");
+		
 		decodificada.guardarImagen("masParecida_reconstruida.bmp");
 		
+		
+		//archivos de salida
+		File inciso1 = new File("Inciso1.txt");
+		File inciso2 = new File("Inciso2.txt");
+		try {
+			FileOutputStream os1 = new FileOutputStream(inciso1);
+			FileOutputStream os2 = new FileOutputStream(inciso2);
+			
+			os1.write(salida1.getBytes());
+			os2.write(salida2.getBytes());
+			
+			os1.close();
+			os2.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		hOriginal.guardarJPEG("HistogramaOriginal.jpeg");
+		h1.guardarJPEG("HistogramaMasParecida.jpeg");
+		h2.guardarJPEG("HistogramaMenosParecida.jpeg");
 		
 	}
 
