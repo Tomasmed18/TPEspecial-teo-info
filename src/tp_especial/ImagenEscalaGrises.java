@@ -1,5 +1,7 @@
 package tp_especial;
 
+import java.awt.image.BufferedImage;
+
 import util.operacionesArreglo;
 
 public class ImagenEscalaGrises extends Imagen{
@@ -7,8 +9,9 @@ public class ImagenEscalaGrises extends Imagen{
 	public ImagenEscalaGrises(String nombreArchivo) {
 		super(nombreArchivo);
 	}
-	public ImagenEscalaGrises(int[] arrPixeles, int alto, int ancho) {
-		super(arrPixeles,alto,ancho);
+	public ImagenEscalaGrises(int[] arrPixeles, int alto, int ancho, int tipo) {
+		//tipo preferentemente seria BufferedImage.TYPE_BYTE_INDEXED
+		super(arrPixeles,alto,ancho,tipo);
 	}
 	
 	public int getPixel(int x, int y){
