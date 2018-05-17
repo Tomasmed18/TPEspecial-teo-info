@@ -1,73 +1,93 @@
 package tp_especial;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Hashtable;
+import java.util.List;
+
 
 public class Main {
+	
+	private static ImagenEscalaGrises imgOriginal;
 
+	private static class ImagenComparable implements Comparable<ImagenComparable>{
+		String nombre;
+		ImagenEscalaGrises img;
+		
+		public ImagenComparable(String nombre, ImagenEscalaGrises img){
+			this.nombre = nombre;
+			this.img = img;
+		}
+		
+		public int compareTo(ImagenComparable arg0) {
+			float corr1 = Indicadores.coeficienteCorrelacionCruzada(this.img.getArregloPixeles(), imgOriginal.getArregloPixeles());
+			float corr2 = Indicadores.coeficienteCorrelacionCruzada(arg0.getImagen().getArregloPixeles(), imgOriginal.getArregloPixeles());
+			if (corr1 > corr2)
+				return -1;
+			else if (corr1 < corr2)
+				return 1;
+			else 
+				return 0;
+		}
+		
+		public ImagenEscalaGrises getImagen(){
+			return this.img;
+		}
+		
+		public String getNombre(){
+			return this.nombre;
+		}
+	}
+	
+	
+	
+	
 	public static void main(String[] args) {
-		ImagenEscalaGrises imgOriginal = new ImagenEscalaGrises("resources/Will_7.bmp");
+		imgOriginal = new ImagenEscalaGrises("resources/Will(Original).bmp");
 		
-		
-		//Histograma h = new Histograma("Cantidades de grises de Will(Original).bmp", imgOriginal.getCantidadesGrises());
-		//Histograma h2 = new Histograma("Cantidades de grises de Will_6.bmp", img1.getCantidadesGrises());
-		CodigoHuffman cod = new CodigoHuffman();
-		cod.codificar(imgOriginal);
-		int ancho =imgOriginal.getAncho();
-		int alto= imgOriginal.getAlto();
-		
-		int[] decodificado=cod.decodificar("codificacion.txt");
-		int[] pixeles=imgOriginal.getArregloPixeles();
-		
-		
-		int coincidencias=0;
-		
-		for (int x = 0; x < ancho; x++)
-			for (int y = 0; y < alto; y++){
-				if(pixeles[x*alto+y]==decodificado[x*alto+y]) {
-					//System.out.println("pixel color: " + pixeles[x*alto+y] + " decodificado como:  " + decodificado[x*alto+y] + " x: " + x+" y: " +y);
-					coincidencias++;
-				}
-			}
-		
-		System.out.println("coincidencias: " + coincidencias+ " de:  " + alto*ancho);
-		
-		ImagenEscalaGrises imgTest = new ImagenEscalaGrises(decodificado,alto,ancho);
-		imgTest.guardarImagen("test.bmp");
-		/**
-		System.out.println(img.getAlto());
-		System.out.println(img.getAncho());
-		for (int x = 0; x < img.getAncho(); x++)
-			for (int y = 0; y < img.getAlto(); y++){
-				System.out.println("r = " + img.getRed(x, y) + ", g = " + img.getGreen(x, y) + ", b = " + img.getBlue(x, y) + ", gris = " + img.getPixel(x, y));
-			}
-		int[] arr = img.getArregloPixeles();
-		int min = 0;
-		int valMin = 255;
-		for (int i = 0; i < arr.length; i++){
-			if (arr[i] < valMin && arr[i] != 0){
-				min = i;
-				valMin = arr[i];
-			}
-			System.out.println(arr[i]);
-		}
-		System.out.println("min = " + min + ", valMin = " + valMin);
-		
-		int[] histograma = img.getCantidadesGrises();
-		for (int i = 0; i<histograma.length; i++){
-			System.out.println("Gris[" + i + "] = " + histograma[i]);
+		//Carga de las imagenes
+		List<ImagenComparable> imagenes = new ArrayList<ImagenComparable>();
+		for (int i = 1; i <= 7; i++){
+			ImagenEscalaGrises img = new ImagenEscalaGrises("resources/Will_" + i + ".bmp");
+			ImagenComparable imgC = new ImagenComparable("Will_" + i + ".bmp", img);
+			imagenes.add(imgC);
 		}
 		
-		System.out.println("Media = " + Indicadores.media(arr));
-		System.out.println("Desvío estandar = " + Indicadores.desviacionEstandar(arr));
-		**/
-		/*
-		char test=0x4001;
-		test=(char) ( test<<1);
-	    char mask= 0x8000;
-	    char aux= (char) (test & mask);
-	    if(aux==0x8000)
-	    	System.out.println(aux);
-	    */
+		//Ordenamiento
+		Collections.sort(imagenes);
+		
+		//Coeficiente de correlacion de cada una
+		for (ImagenComparable img: imagenes)
+			System.out.println("Coef. de correlacion de la imagen original con " + img.getNombre() + ": " + 
+					Indicadores.coeficienteCorrelacionCruzada(img.getImagen().getArregloPixeles(), imgOriginal.getArregloPixeles()));
+		
+		ImagenComparable masParecida = imagenes.get(0);
+		ImagenComparable menosParecida = imagenes.get(imagenes.size() - 1);
+		
+		System.out.println("");
+		System.out.println("La imagen más parecida es: " + masParecida.getNombre());
+		System.out.println("Media: " + Indicadores.media(masParecida.getImagen().getArregloPixeles()));
+		System.out.println("Desvío: " + Indicadores.desviacionEstandar(masParecida.getImagen().getArregloPixeles()));
+		System.out.println("");
+		System.out.println("La imagen menos parecida es: " + menosParecida.getNombre());
+		System.out.println("Media: " + Indicadores.media(menosParecida.getImagen().getArregloPixeles()));
+		System.out.println("Desvío: " + Indicadores.desviacionEstandar(menosParecida.getImagen().getArregloPixeles()));
+		
+		//Histogramas
+		
+		Histograma h1 = new Histograma("Cantidades de grises de " + masParecida.getNombre(), masParecida.getImagen().getCantidadesGrises());
+		Histograma h2 = new Histograma("Cantidades de grises de " + menosParecida.getNombre(), menosParecida.getImagen().getCantidadesGrises());
+		
+		
+		//Huffman
+		CodigoHuffman huffman = new CodigoHuffman();
+		huffman.codificar(masParecida.getImagen(), "masParecida.txt");
+		
+		ImagenEscalaGrises decodificada = huffman.decodificar("masParecida.txt");
+		decodificada.guardarImagen("masParecida_reconstruida.bmp");
+		
+		
 	}
 
 }
