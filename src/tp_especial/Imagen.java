@@ -1,6 +1,7 @@
 package tp_especial;
 
 import java.awt.image.BufferedImage;
+import java.awt.image.IndexColorModel;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
@@ -67,8 +68,17 @@ public class Imagen {
 		return matriz;
 	}
 	
-	public Imagen(int[] arrPixeles, int alto, int ancho) {
-		img= new BufferedImage(ancho, alto, BufferedImage.TYPE_INT_RGB);
+	public Imagen(int[] arrPixeles, int alto, int ancho, int tipo) { //ej tipo: BufferedImage.TPYE_INT_RGB
+		/*
+		byte MAX = (byte) 255;
+		byte[] red = new byte[] {MAX, 127, 0};
+		byte[] green = new byte[] {MAX, 127, 0};
+		byte[] blue= new byte[] {MAX, 127, 0};
+		byte[] alpha= new byte[] {MAX, 127, 0};
+
+		IndexColorModel indexColorModel = new IndexColorModel(4, 2, red, green, blue,alpha);
+		 */
+		img= new BufferedImage(ancho, alto, tipo);
 		for (int x = 0; x < ancho; x++)
 			for (int y = 0; y < alto; y++){
 				int aux=arrPixeles[x * alto + y];
