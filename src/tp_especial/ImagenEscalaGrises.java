@@ -2,7 +2,7 @@ package tp_especial;
 
 import java.awt.image.BufferedImage;
 
-import util.operacionesArreglo;
+import util.OperacionesArreglo;
 
 public class ImagenEscalaGrises extends Imagen{
 
@@ -22,7 +22,7 @@ public class ImagenEscalaGrises extends Imagen{
 	
 	public int[] getCantidadesGrises(){
 		int[] arr = new int[256];
-		operacionesArreglo.inicializarArreglo(arr, 0);
+		OperacionesArreglo.inicializarArreglo(arr, 0);
 		for (int x = 0; x < this.getAncho(); x++)
 			for (int y = 0; y < this.getAlto(); y++)
 				arr[this.getPixel(x, y)]++;
