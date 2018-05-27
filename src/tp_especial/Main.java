@@ -40,6 +40,11 @@ public class Main {
 		}
 		System.out.println("Suma = " + suma);
 		
+		float ruido = Canales.ruido(img1, img2);
+		System.out.println("Ruido = " + ruido);
+		float perdida = Canales.perdida(img1, img2);
+		System.out.println("Pérdida = " + perdida);
+		
 		System.exit(0);
 	}
 
