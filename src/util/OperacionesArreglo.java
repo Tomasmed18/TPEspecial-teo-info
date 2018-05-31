@@ -1,6 +1,6 @@
 package util;
 
-public class operacionesArreglo {
+public class OperacionesArreglo {
 	
 	public static boolean converge(float[] v1, float[] v2, float epsilon){
 		for (int i = 0; i < v1.length; i++){

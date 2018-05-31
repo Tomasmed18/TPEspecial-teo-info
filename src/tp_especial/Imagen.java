@@ -78,6 +78,8 @@ public class Imagen {
 
 		IndexColorModel indexColorModel = new IndexColorModel(4, 2, red, green, blue,alpha);
 		 */
+		this.alto = alto;
+		this.ancho = ancho;
 		img= new BufferedImage(ancho, alto, tipo);
 		for (int x = 0; x < ancho; x++)
 			for (int y = 0; y < alto; y++){
