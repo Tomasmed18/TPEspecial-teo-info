@@ -22,6 +22,18 @@ public class Main {
 		System.out.println("Pérdida = " + perdida);
 		float infoMutua = Canales.informacionMutua(img1, img2);
 		System.out.println("Información mutua = " + infoMutua);
+		
+		/*
+		float[] test= {1.0f/3.0f, 2.0f/3.0f};
+		float[] test2;
+		test2=util.OperacionesArreglo.acumularArreglo(img1.getProbabilidadesGrises());
+		*/
+		
+		Fuente f= new Fuente(img1);
+		Canal c= new Canal(img1,img2);
+		int simb=f.emitir();
+		System.out.println("emitido " + simb);
+		System.out.println("llega " + c.transmitirSimbolo(simb));
 		System.exit(0);
 	}
 
