@@ -14,37 +14,26 @@ public class Main {
 	
 	public static void main(String[] args) {
 		ImagenEscalaGrises img1 = new ImagenEscalaGrises("resources/Will(Original).bmp");
-		ImagenEscalaGrises img2 = new ImagenEscalaGrises("resources/Will_1.bmp");
-		
-		float[][] mat = Probabilidades.matrizProbabilidadesConjuntas(img1, img2);
-		float suma = 0;
-		for (int i = 0; i < 256; i++){
-			for (int j = 0; j < 256; j++){
-				if (mat[i][j] != 0)
-					System.out.println(mat[i][j] + " en " + i + " " + j);
-				suma += mat[i][j];
-			}
-			
-		}
-		System.out.println("Suma = " + suma);
-		
-		
-		mat = Probabilidades.matrizTransicion(img1, img2);
-		suma = 0;
-		for (int i = 0; i < 256; i++){
-			for (int j = 0; j < 256; j++){
-				if (mat[i][j] != 0)
-					System.out.println(mat[i][j] + " en " + i + " " + j);
-				suma += mat[i][j];
-			}
-		}
-		System.out.println("Suma = " + suma);
+		ImagenEscalaGrises img2 = new ImagenEscalaGrises("resources/Will_Canal10.bmp");
 		
 		float ruido = Canales.ruido(img1, img2);
 		System.out.println("Ruido = " + ruido);
 		float perdida = Canales.perdida(img1, img2);
 		System.out.println("Pérdida = " + perdida);
+		float infoMutua = Canales.informacionMutua(img1, img2);
+		System.out.println("Información mutua = " + infoMutua);
 		
+		/*
+		float[] test= {1.0f/3.0f, 2.0f/3.0f};
+		float[] test2;
+		test2=util.OperacionesArreglo.acumularArreglo(img1.getProbabilidadesGrises());
+		*/
+		
+		Fuente f= new Fuente(img1);
+		Canal c= new Canal(img1,img2);
+		int simb=f.emitir();
+		System.out.println("emitido " + simb);
+		System.out.println("llega " + c.transmitirSimbolo(simb));
 		System.exit(0);
 	}
 
