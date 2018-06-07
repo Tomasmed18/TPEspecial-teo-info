@@ -33,4 +33,22 @@ public class OperacionesArreglo {
 			copia[i] = original[i];
 		}
 	}
+	static public float[] acumularArreglo(float[] source) {
+		float acum=0.0f;
+		float[] result=new float[source.length];
+		int ultimoNum=0;
+		for(int i=0;i<source.length;i++) {
+			if(source[i]!=0) {
+				ultimoNum=i;
+				acum+=source[i];
+				result[i]=acum;
+				
+			}else
+				result[i]=0;
+			
+			
+		}
+		result[ultimoNum]=1.0f; //seteo el ultimo numero en uno por si la suma de floats pierde precision
+		return result;
+	}
 }
