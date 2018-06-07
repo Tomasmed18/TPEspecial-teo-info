@@ -13,9 +13,9 @@ public class Fuente {
 	
 	public int emitir() {
 		double prob=Math.random();
-		
 		int i=0;
-		while(prob>this.probabilidadesEmisionAcumulada[i]) {
+		
+		while (prob > this.probabilidadesEmisionAcumulada[i]) {
 			i++;
 		}
 		
