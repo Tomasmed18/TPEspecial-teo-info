@@ -17,7 +17,7 @@ public class Canal {
 		int tonoGris = simb/17;
 		double prob = Math.random();
 		int fila = 0;
-		while (prob >= matrizTransicionAcumulada[fila][tonoGris]) {
+		while (prob > matrizTransicionAcumulada[fila][tonoGris]) {
 			fila++;
 			
 		}
