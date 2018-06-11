@@ -20,10 +20,16 @@ public class Main {
 		System.out.println("Ruido = " + ruido);
 		System.out.println("Ruido por simulacion = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
 		System.out.println("Ruido por convergencia = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
+		
 		float perdida = Canales.perdida(img1, img2);
 		System.out.println("Pérdida = " + perdida);
 		System.out.println("Perdida por simulacion = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
 		System.out.println("Perdida por convergencia = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
+		
+		float info = Canales.informacionMutua(img1, img2); 
+		System.out.println("Info mutua = " + info);
+		System.out.println("Info mutua por simulacion = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
+		System.out.println("Info mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
 		/**
 		float perdida = Canales.perdida(img1, img2);
 		System.out.println("Pérdida = " + perdida);
