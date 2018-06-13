@@ -37,4 +37,17 @@ public class ImagenEscalaGrises extends Imagen{
 			probGrises[i]=(float)grises[i]/(float)totalGrises;
 		return probGrises;
 	}
+	
+	public ImagenEscalaGrises transmitirPorCanal(Canal canal) {
+		
+		
+		int[] pixeles=this.getArregloPixeles();
+
+		for(int i=0; i<pixeles.length;i++)
+			pixeles[i]=canal.transmitirSimbolo(pixeles[i]);
+		
+		ImagenEscalaGrises imgCreada=new ImagenEscalaGrises(pixeles, this.getAlto(), this.getAncho(), BufferedImage.TYPE_BYTE_INDEXED);
+		
+		return imgCreada;
+	}
 }
