@@ -27,17 +27,17 @@ public class Main {
 		float[][] m10 = Probabilidades.matrizTransicion(img1, img10);
 		
 		inciso1 += "Matriz de transición del canal 2: " + String.format("%n");
-		for (int i = 0; i < 16; i++)
-			for (int j = 0; j < 16; j++)
+		for (int j = 0; j < 16; j++)
+			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m2[i][j] + String.format("%n");
 		
 		inciso1 += String.format("%n") + "Matriz de transición del canal 8: " + String.format("%n");
-		for (int i = 0; i < 16; i++)
-			for (int j = 0; j < 16; j++)
+		for (int j = 0; j < 16; j++)
+			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m8[i][j] + String.format("%n");
 		inciso1 += String.format("%n") + "Matriz de transición del canal 10: " + String.format("%n");
-		for (int i = 0; i < 16; i++)
-			for (int j = 0; j < 16; j++)
+		for (int j = 0; j < 16; j++)
+			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m10[i][j] + String.format("%n");
 		
 		System.out.println(inciso1);
