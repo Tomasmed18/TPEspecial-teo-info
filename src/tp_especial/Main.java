@@ -14,41 +14,63 @@ public class Main {
 	
 	public static void main(String[] args) {
 		ImagenEscalaGrises img1 = new ImagenEscalaGrises("resources/Will(Original).bmp");
-		ImagenEscalaGrises img2 = new ImagenEscalaGrises("resources/Will_Canal8.bmp");
+		ImagenEscalaGrises img2 = new ImagenEscalaGrises("resources/Will_Canal2.bmp");
+		ImagenEscalaGrises img8 = new ImagenEscalaGrises("resources/Will_Canal8.bmp");
+		ImagenEscalaGrises img10 = new ImagenEscalaGrises("resources/Will_Canal10.bmp");
 		
-		float ruido = Canales.ruido(img1, img2);
-		System.out.println("Ruido = " + ruido);
-		System.out.println("Ruido por simulacion = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
-		System.out.println("Ruido por convergencia = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
+		//---------Inciso 1
+		String inciso1 = "";
 		
-		float perdida = Canales.perdida(img1, img2);
-		System.out.println("Pérdida = " + perdida);
-		System.out.println("Perdida por simulacion = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
-		System.out.println("Perdida por convergencia = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
+		inciso1 += ("Ruido canal 2: " + Canales.ruido(img1, img2)) + String.format("%n");
+		inciso1 += ("Ruido canal 8: " + Canales.ruido(img1, img8)) + String.format("%n");
+		inciso1 += ("Ruido canal 10: " + Canales.ruido(img1, img10)) + String.format("%n");
 		
-		float info = Canales.informacionMutua(img1, img2); 
-		System.out.println("Info mutua = " + info);
-		System.out.println("Info mutua por simulacion = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2), 100000));
-		System.out.println("Info mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2)));
-		/**
-		float perdida = Canales.perdida(img1, img2);
-		System.out.println("Pérdida = " + perdida);
-		float infoMutua = Canales.informacionMutua(img1, img2);
-		System.out.println("Información mutua = " + infoMutua);
+		inciso1 += ("Pérdida canal 2: " + Canales.perdida(img1, img2)) + String.format("%n");
+		inciso1 += ("Pérdida canal 8: " + Canales.perdida(img1, img8)) + String.format("%n");
+		inciso1 += ("Pérdida canal 10: " + Canales.perdida(img1, img10)) + String.format("%n");
 		
+		inciso1 += ("Información Mutua canal 2: " + Canales.informacionMutua(img1, img2)) + String.format("%n");
+		inciso1 += ("Información Mutua 8: " + Canales.informacionMutua(img1, img8)) + String.format("%n");
+		inciso1 += ("Información Mutua canal 10: " + Canales.informacionMutua(img1, img10)) + String.format("%n");
 		
-		float[] test= {1.0f/3.0f, 2.0f/3.0f};
-		float[] test2;
-		test2=util.OperacionesArreglo.acumularArreglo(img1.getProbabilidadesGrises());
+		System.out.println(inciso1);
 		
 		
-		Fuente f= new Fuente(img1);
-		Canal c= new Canal(img1,img2);
-		int simb=f.emitir();
-		System.out.println("emitido " + simb);
-		System.out.println("llega " + c.transmitirSimbolo(simb));
-		System.exit(0); 
-		**/
+		//---------Inciso 2
+		String inciso2 = "";
+		
+		int i = 10;
+		while (i <= 100000){
+			inciso2 += ("Ruido con " + i + " iteraciones: " + 
+					Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
+			inciso2 += ("Pérdida con " + i + " iteraciones: " + 
+					Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
+			inciso2 += ("Información Mutua con " + i + " iteraciones: " + 
+					Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
+			i = i * 10;
+			inciso2 += String.format("%n");
+		}
+		inciso2 += ("Ruido por convergencia = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
+		inciso2 += ("Pérdida por convergencia = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
+		inciso2 += ("Información mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
+		
+		System.out.println(inciso2);
+		
+		//---------Guardado en archivos
+		File p2inciso1 = new File("Parte2Inciso1.txt");
+		File p2inciso2 = new File("Parte2Inciso2.txt");
+		try {
+			FileOutputStream os1 = new FileOutputStream(p2inciso1);
+			FileOutputStream os2 = new FileOutputStream(p2inciso2);
+			
+			os1.write(inciso1.getBytes());
+			os2.write(inciso2.getBytes());
+			
+			os1.close();
+			os2.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
