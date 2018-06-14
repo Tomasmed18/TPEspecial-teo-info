@@ -26,16 +26,16 @@ public class Main {
 		float[][] m8 = Probabilidades.matrizTransicion(img1, img8);
 		float[][] m10 = Probabilidades.matrizTransicion(img1, img10);
 		
-		inciso1 += "Matriz de transici髇 del canal 2: " + String.format("%n");
+		inciso1 += "Matriz de transici贸n del canal 2: " + String.format("%n");
 		for (int j = 0; j < 16; j++)
 			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m2[i][j] + String.format("%n");
 		
-		inciso1 += String.format("%n") + "Matriz de transici髇 del canal 8: " + String.format("%n");
+		inciso1 += String.format("%n") + "Matriz de transici贸n del canal 8: " + String.format("%n");
 		for (int j = 0; j < 16; j++)
 			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m8[i][j] + String.format("%n");
-		inciso1 += String.format("%n") + "Matriz de transici髇 del canal 10: " + String.format("%n");
+		inciso1 += String.format("%n") + "Matriz de transici贸n del canal 10: " + String.format("%n");
 		for (int j = 0; j < 16; j++)
 			for (int i = 0; i < 16; i++)
 				inciso1 += "[" + i + "][" + j + "] = "  + m10[i][j] + String.format("%n");
@@ -49,13 +49,13 @@ public class Main {
 		inciso2 += ("Ruido canal 8: " + Canales.ruido(img1, img8)) + String.format("%n");
 		inciso2 += ("Ruido canal 10: " + Canales.ruido(img1, img10)) + String.format("%n");
 		
-		inciso2 += ("P閞dida canal 2: " + Canales.perdida(img1, img2)) + String.format("%n");
-		inciso2 += ("P閞dida canal 8: " + Canales.perdida(img1, img8)) + String.format("%n");
-		inciso2 += ("P閞dida canal 10: " + Canales.perdida(img1, img10)) + String.format("%n");
+		inciso2 += ("P茅rdida canal 2: " + Canales.perdida(img1, img2)) + String.format("%n");
+		inciso2 += ("P茅rdida canal 8: " + Canales.perdida(img1, img8)) + String.format("%n");
+		inciso2 += ("P茅rdida canal 10: " + Canales.perdida(img1, img10)) + String.format("%n");
 		
-		inciso2 += ("Informaci髇 Mutua canal 2: " + Canales.informacionMutua(img1, img2)) + String.format("%n");
-		inciso2 += ("Informaci髇 Mutua 8: " + Canales.informacionMutua(img1, img8)) + String.format("%n");
-		inciso2 += ("Informaci髇 Mutua canal 10: " + Canales.informacionMutua(img1, img10)) + String.format("%n");
+		inciso2 += ("Informaci贸n Mutua canal 2: " + Canales.informacionMutua(img1, img2)) + String.format("%n");
+		inciso2 += ("Informaci贸n Mutua 8: " + Canales.informacionMutua(img1, img8)) + String.format("%n");
+		inciso2 += ("Informaci贸n Mutua canal 10: " + Canales.informacionMutua(img1, img10)) + String.format("%n");
 		
 		System.out.println(inciso2);
 		
@@ -67,16 +67,16 @@ public class Main {
 		while (i <= 100000){
 			inciso3 += ("Ruido con " + i + " iteraciones: " + 
 					Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
-			inciso3 += ("P閞dida con " + i + " iteraciones: " + 
+			inciso3 += ("P茅rdida con " + i + " iteraciones: " + 
 					Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
-			inciso3 += ("Informaci髇 Mutua con " + i + " iteraciones: " + 
+			inciso3 += ("Informaci贸n Mutua con " + i + " iteraciones: " + 
 					Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2), i)) + String.format("%n");
 			i = i * 10;
 			inciso3 += String.format("%n");
 		}
 		inciso3 += ("Ruido por convergencia = " + Canales.ruidoPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
-		inciso3 += ("P閞dida por convergencia = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
-		inciso3 += ("Informaci髇 mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
+		inciso3 += ("P茅rdida por convergencia = " + Canales.perdidaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
+		inciso3 += ("Informaci贸n mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(new Fuente(img1), new Canal(img1, img2))) + String.format("%n");
 		
 		System.out.println(inciso3);
 		
@@ -99,6 +99,7 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		System.exit(0);
 	}
 
 }
