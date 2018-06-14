@@ -31,19 +31,19 @@ public class Main {
 		for (int i = 0; i < cantGrises2.length; i++)
 			inciso1 += "[" + i + "] = " + cantGrises2[i] + sl;
 		inciso1 += "Media del canal 2 = " + Indicadores.media(imgcanal2.getArregloPixeles()) + sl;
-		inciso1 += "Desv韔 del canal 2 = " + Indicadores.desviacionEstandar(imgcanal2.getArregloPixeles()) + sl + sl;
+		inciso1 += "Desv铆o del canal 2 = " + Indicadores.desviacionEstandar(imgcanal2.getArregloPixeles()) + sl + sl;
 		
 		inciso1 += "Distribuciones de grises de la salida del canal 8:" + sl;
 		for (int i = 0; i < cantGrises8.length; i++)
 			inciso1 += "[" + i + "] = " + cantGrises8[i] + sl;
 		inciso1 += "Media del canal 8 = " + Indicadores.media(imgcanal8.getArregloPixeles()) + sl;
-		inciso1 += "Desv韔 del canal 8 = " + Indicadores.desviacionEstandar(imgcanal8.getArregloPixeles()) + sl + sl;
+		inciso1 += "Desv铆o del canal 8 = " + Indicadores.desviacionEstandar(imgcanal8.getArregloPixeles()) + sl + sl;
 		
 		inciso1 += "Distribuciones de grises de la salida del canal 10:" + sl;
 		for (int i = 0; i < cantGrises10.length; i++)
 			inciso1 += "[" + i + "] = " + cantGrises10[i] + sl;
 		inciso1 += "Media del canal 10 = " + Indicadores.media(imgcanal10.getArregloPixeles()) + sl;
-		inciso1 += "Desv韔 del canal 10 = " + Indicadores.desviacionEstandar(imgcanal10.getArregloPixeles());
+		inciso1 += "Desv铆o del canal 10 = " + Indicadores.desviacionEstandar(imgcanal10.getArregloPixeles());
 		
 		Histograma h2 = new Histograma("Cantidades de grises de Canal 2" , imgcanal2.getCantidadesGrises(), false);
 		Histograma h8 = new Histograma("Cantidades de grises de Canal 8" , imgcanal8.getCantidadesGrises(), false);
@@ -60,9 +60,9 @@ public class Main {
 		float longitudMedia8 = ch.codificar(imgcanal8, "CodificacionCanal8.txt");
 		float longitudMedia10 = ch.codificar(imgcanal10, "CodificacionCanal10.txt");
 		
-		inciso2 += "Longitud media por s韒bolo del c骴igo de la salida del canal 2 = " + longitudMedia2 + sl;
-		inciso2 += "Longitud media por s韒bolo del c骴igo de la salida del canal 8 = " + longitudMedia8 + sl;
-		inciso2 += "Longitud media por s韒bolo del c骴igo de la salida del canal 10 = " + longitudMedia10 + sl;
+		inciso2 += "Longitud media por s铆mbolo del c贸digo de la salida del canal 2 = " + longitudMedia2 + sl;
+		inciso2 += "Longitud media por s铆mbolo del c贸digo de la salida del canal 8 = " + longitudMedia8 + sl;
+		inciso2 += "Longitud media por s铆mbolo del c贸digo de la salida del canal 10 = " + longitudMedia10 + sl;
 		
 		System.out.println(inciso2);
 		
@@ -79,18 +79,18 @@ public class Main {
 		
 		inciso3 += "Will_6.bmp transmitida por el canal 2:" + sl;
 		inciso3 += "Ruido = " + Canales.ruido(img6, img6Canal2) + sl;
-		inciso3 += "P閞dida = " + Canales.perdida(img6, img6Canal2) + sl;
-		inciso3 += "Informaci髇 Mutua = " + Canales.informacionMutua(img6, img6Canal2) + sl + sl;
+		inciso3 += "P茅rdida = " + Canales.perdida(img6, img6Canal2) + sl;
+		inciso3 += "Informaci贸n Mutua = " + Canales.informacionMutua(img6, img6Canal2) + sl + sl;
 		
 		inciso3 += "Will_6.bmp transmitida por el canal 8:" + sl;
 		inciso3 += "Ruido = " + Canales.ruido(img6, img6Canal8) + sl;
-		inciso3 += "P閞dida = " + Canales.perdida(img6, img6Canal8) + sl;
-		inciso3 += "Informaci髇 Mutua = " + Canales.informacionMutua(img6, img6Canal8) + sl + sl;
+		inciso3 += "P茅rdida = " + Canales.perdida(img6, img6Canal8) + sl;
+		inciso3 += "Informaci贸n Mutua = " + Canales.informacionMutua(img6, img6Canal8) + sl + sl;
 		
 		inciso3 += "Will_6.bmp transmitida por el canal 10:" + sl;
 		inciso3 += "Ruido = " + Canales.ruido(img6, img6Canal10) + sl;
-		inciso3 += "P閞dida = " + Canales.perdida(img6, img6Canal10) + sl;
-		inciso3 += "Informaci髇 Mutua = " + Canales.informacionMutua(img6, img6Canal10);
+		inciso3 += "P茅rdida = " + Canales.perdida(img6, img6Canal10) + sl;
+		inciso3 += "Informaci贸n Mutua = " + Canales.informacionMutua(img6, img6Canal10);
 		
 		System.out.println(inciso3);
 		
@@ -106,16 +106,16 @@ public class Main {
 		while (i <= 100000){
 			inciso4 += ("Ruido con " + i + " iteraciones: " + 
 					Canales.ruidoPorSimulacion(fuente, canal2, i)) + sl;
-			inciso4 += ("P閞dida con " + i + " iteraciones: " + 
+			inciso4 += ("P茅rdida con " + i + " iteraciones: " + 
 					Canales.perdidaPorSimulacion(fuente, canal2, i)) + sl;
-			inciso4 += ("Informaci髇 Mutua con " + i + " iteraciones: " + 
+			inciso4 += ("Informaci贸n Mutua con " + i + " iteraciones: " + 
 					Canales.informacionMutuaPorSimulacion(fuente, canal2, i)) + sl;
 			i = i * 10;
 			inciso4 += sl;
 		}
 		inciso4 += ("Ruido por convergencia = " + Canales.ruidoPorSimulacion(fuente, canal2)) + sl;
-		inciso4 += ("P閞dida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal2)) + sl;
-		inciso4 += ("Informaci髇 mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal2)) + sl + sl + sl;
+		inciso4 += ("P茅rdida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal2)) + sl;
+		inciso4 += ("Informaci贸n mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal2)) + sl + sl + sl;
 
 		
 		
@@ -124,16 +124,16 @@ public class Main {
 		while (i <= 100000){
 			inciso4 += ("Ruido con " + i + " iteraciones: " + 
 					Canales.ruidoPorSimulacion(fuente, canal8, i)) + sl;
-			inciso4 += ("P閞dida con " + i + " iteraciones: " + 
+			inciso4 += ("P茅rdida con " + i + " iteraciones: " + 
 					Canales.perdidaPorSimulacion(fuente, canal8, i)) + sl;
-			inciso4 += ("Informaci髇 Mutua con " + i + " iteraciones: " + 
+			inciso4 += ("Informaci贸n Mutua con " + i + " iteraciones: " + 
 					Canales.informacionMutuaPorSimulacion(fuente, canal8, i)) + sl;
 			i = i * 10;
 			inciso4 += sl;
 		}
 		inciso4 += ("Ruido por convergencia = " + Canales.ruidoPorSimulacion(fuente, canal8)) + sl;
-		inciso4 += ("P閞dida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal8)) + sl;
-		inciso4 += ("Informaci髇 mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal8)) + sl + sl + sl;
+		inciso4 += ("P茅rdida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal8)) + sl;
+		inciso4 += ("Informaci贸n mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal8)) + sl + sl + sl;
 		
 		
 		
@@ -142,16 +142,16 @@ public class Main {
 		while (i <= 100000){
 			inciso4 += ("Ruido con " + i + " iteraciones: " + 
 					Canales.ruidoPorSimulacion(fuente, canal10, i)) + sl;
-			inciso4 += ("P閞dida con " + i + " iteraciones: " + 
+			inciso4 += ("P茅rdida con " + i + " iteraciones: " + 
 					Canales.perdidaPorSimulacion(fuente, canal10, i)) + sl;
-			inciso4 += ("Informaci髇 Mutua con " + i + " iteraciones: " + 
+			inciso4 += ("Informaci贸n Mutua con " + i + " iteraciones: " + 
 					Canales.informacionMutuaPorSimulacion(fuente, canal10, i)) + sl;
 			i = i * 10;
 			inciso4 += sl;
 		}
 		inciso4 += ("Ruido por convergencia = " + Canales.ruidoPorSimulacion(fuente, canal10)) + sl;
-		inciso4 += ("P閞dida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal10)) + sl;
-		inciso4 += ("Informaci髇 mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal10));
+		inciso4 += ("P茅rdida por convergencia = " + Canales.perdidaPorSimulacion(fuente, canal10)) + sl;
+		inciso4 += ("Informaci贸n mutua por convergencia = " + Canales.informacionMutuaPorSimulacion(fuente, canal10));
 		
 		System.out.println(inciso4);
 		
@@ -188,7 +188,7 @@ public class Main {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+		System.exit(0);
 		
 	}
 
